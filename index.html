@@ -2,7 +2,7 @@
 <style>
 
 * {
-  outline: none;
+  /*outline: none;*/
   box-sizing: border-box;
 }
 
@@ -381,14 +381,10 @@ p, span, ul, li {
   background-color: transparent;
 }
 
-.calendar-contain input {
-  display: inline-block;
-  width: 3.5em;
-  background: none;
-}
-
 .calendar-contain .year {
-  width: 3.5em;
+  display: inline-block;
+  width: 4em;
+  background: none;
 }
 
 </style>
@@ -441,13 +437,44 @@ function next(container, e, selector, create) {
 
 function Calendar(element) {
   this.element = element;
-  this.month = DateUtils.month(new Date());
+  this.selectedDate = new Date();
+
+  var calendar = this;
+  this.element.addEventListener('keydown', function (event) {
+    if (event.target.matches('.calendar__day')) {
+      var select = function (n) {
+        event.preventDefault();
+        calendar.init(new Date(calendar.selectedDate.getFullYear(), calendar.selectedDate.getMonth(), calendar.selectedDate.getDate() + n));
+        var x = new Date(calendar.selectedDate);
+        //x.setUTCHours(0, 0, 0, 0);
+        calendar.element.querySelector('[data-date="' + x.toISOString() + '"]').focus();
+      };
+      var key = event.key;
+      if (key === 'ArrowUp') {
+        select(-7);
+      } else if (key === 'ArrowDown') {
+        select(+7);
+      } else if (key === 'ArrowLeft') {
+        select(-1);
+      } else if (key === 'ArrowRight') {
+        select(+1);
+      }
+    }
+    console.log(key);
+  });
+  this.element.addEventListener('focus', function (event) {
+    if (event.target.matches('.calendar__day')) {
+      var date = new Date(event.target.getAttribute('data-date'));
+      calendar.init(date);
+    }
+  }, true);
 }
 Calendar.prototype.init = function (selectedDate) {
-  this.month = DateUtils.month(selectedDate);
+  this.selectedDate = selectedDate;
 
   var calendar = this;
   var select = this.element.querySelector('.month');
+  var yearSelect = this.element.querySelector('.year');
   var format = new Intl.DateTimeFormat([], { month: 'long' });
   if (select.childNodes.length < 4) {
     select.innerHTML = '';
@@ -458,18 +485,18 @@ Calendar.prototype.init = function (selectedDate) {
       select.appendChild(option);
     }
     select.oninput = select.onchange = function () {
-      calendar.init(new Date(calendar.month.getFullYear(), select.value));
+      calendar.init(new Date(calendar.selectedDate.getFullYear(), select.value));
     };
-    select.value = selectedDate.getMonth();
     
-    var yearSelect = this.element.querySelector('.year');
     yearSelect.oninput = yearSelect.onchange = function () {
-      calendar.init(new Date(Number(yearSelect.value), calendar.month.getMonth()));
+      calendar.init(new Date(Number(yearSelect.value), calendar.selectedDate.getMonth()));
     };
   }
+  select.value = selectedDate.getMonth();
+  yearSelect.value = selectedDate.getFullYear();
 
   var e = this.element;
-  var currentMonth = this.month;
+  var currentMonth = DateUtils.month(this.selectedDate);
   var updateDayNode = function (dayNode, date) {
     var template = '';
     template += '<span class="calendar__date">' + date.getDate() + '</span>';
@@ -478,6 +505,8 @@ Calendar.prototype.init = function (selectedDate) {
     dayNode.classList.toggle('inactive', date.getMonth() !== currentMonth.getMonth());
     var today = new Date();
     dayNode.classList.toggle('today', date.getMonth() === today.getMonth() && date.getDate() === today.getDate());
+    dayNode.tabIndex = date.getDate() === selectedDate.getDate() && date.getMonth() === selectedDate.getMonth() ? 0 : -1;
+    dayNode.setAttribute('data-date', date.toISOString());
   };
   var updateWeekNode = function (weekNode, week) {
     var days = 7;
@@ -507,7 +536,7 @@ Calendar.prototype.init = function (selectedDate) {
       weekNode = t;
     }
   };
-  updateDays(e.querySelector('.calendar__days'), this.month);
+  updateDays(e.querySelector('.calendar__days'), currentMonth);
 };
 
 document.addEventListener('DOMContentLoaded', function () {
