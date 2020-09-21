@@ -10,15 +10,23 @@
         "Japan",
         "Israel"
       ],
-      "description": "TextTextText"
+      "description": "King was the chief spokesperson for nonviolent activism in the Civil Rights Movement, which successfully protested racial discrimination in federal and state law."
     },
     {
       "date": "2021-03-08T00:00:00.000Z",
       "name": "International Women's Day",
       "countries": [
-        "Global"
+        "the whole world"
       ],
-      "description": "TextTextText"
+      "description": "It is a focal point in the movement for women's rights."
+    },
+	{
+      "date": "2021-04-19T00:00:00.000Z",
+      "name": "Rocket Community Day",
+      "countries": [
+        "all Rocket locations"
+      ],
+      "description": ""
     },
     {
       "date": "2021-06-19T00:00:00.000Z",
@@ -26,26 +34,26 @@
       "countries": [
         "USA"
       ],
-      "description": "TextTextText"
+      "description": "Juneteenth is celebrating the emancipation of those who had been enslaved in the United States."
     },
     {
       "date": "2021-09-18T00:00:00.000Z",
       "name": "International Equal Pay Day",
       "countries": [
-        "Global"
+        "the whole world"
       ],
       "description": "TextTextText"
     },
     {
       "date": "2021-12-03T00:00:00.000Z",
-      "name": "Day of Persons with Disability",
+      "name": "Day of Persons with Disabilities",
       "countries": [
-        "Global"
+        "the whole world"
       ],
-      "description": "TextTextText"
+      "description": "The annual observance of the International Day of Disabled Persons was proclaimed in 1992 by United Nations General Assembly resolution 47/3. It aims to promote the rights and well-being of persons with disabilities in all spheres of society and development, and to increase awareness of the situation of persons with disabilities in every aspect of political, social, economic and cultural life."
     },
     {
-      "date": "january",
+      "date": "february",
       "name": "Black History Month",
       "countries": [
         "USA",
@@ -53,7 +61,7 @@
         "Netherlands",
         "UK"
       ],
-      "description": "TextTextText"
+      "description": "Black History Month is an annual observance originating in the United States, where it is also known as African-American History Month."
     },
     {
       "date": "march",
@@ -63,23 +71,23 @@
         "UK",
         "Australia"
       ],
-      "description": "TextTextText"
+      "description": "Commemorating and encouraging the study, observance and celebration of the vital role of women in American history."
     },
     {
       "date": "june",
-      "name": "LGBTQ Pride",
+      "name": "PRIDE",
       "countries": [
-        "Global"
+        "the whole world"
       ],
-      "description": "TextTextText"
+      "description": "Gay pride or LGBT pride is the promotion of the self-affirmation, dignity, equality, and increased visibility of lesbian, gay, bisexual, and transgender (LGBT) people as a social group. Pride, as opposed to shame and social stigma, is the predominant outlook that bolsters most LGBT rights movements. Pride has lent its name to LGBT-themed organizations, institutes, foundations, book titles, periodicals, a cable TV station, and the Pride Library."
     },
     {
       "date": "october",
       "name": "Global Diversity Awareness Month",
       "countries": [
-        "Global"
+        "the whole world"
       ],
-      "description": "TextTextText"
+      "description": "Pays tribute to the diverse minds and beliefs held by all cultures around the world."
     }
   ]
 }
