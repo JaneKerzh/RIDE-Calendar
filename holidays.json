@@ -1,0 +1,28 @@
+{
+  "holidays": [
+    {
+      "date": "2021-01-18T00:00:00.000Z",
+      "holiday": "Martin Luther King Jr. Day",
+      "countries": [
+        "USA",
+        "Canada",
+        "Netherlands",
+        "Japan",
+        "Israel"
+      ],
+      "description": "TextTextText"
+    },
+    {
+      "date": "2021-01-18T00:00:00.000Z",
+      "holiday": "Martin Luther King Jr. Day",
+      "countries": [
+        "USA",
+        "Canada",
+        "Netherlands",
+        "Japan",
+        "Israel"
+      ],
+      "description": "TextTextText"
+    }
+  ]
+}
