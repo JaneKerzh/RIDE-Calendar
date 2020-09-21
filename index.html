@@ -494,10 +494,12 @@ document.addEventListener('click', function (event) {
   if (event.target.closest('.left') != null) {
     var select = event.target.closest('.left').nextElementSibling;
     select.selectedIndex = (select.selectedIndex - 1 + select.options.length) % select.options.length;
+    select.dispatchEvent(new Event('change'));
   }
   if (event.target.closest('.right') != null) {
     var select = event.target.closest('.right').previousElementSibling;
     select.selectedIndex = (select.selectedIndex + 1) % select.options.length;
+    select.dispatchEvent(new Event('change'));
   }
 });
 
