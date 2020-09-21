@@ -490,6 +490,17 @@ if (Intl.ListFormat != null) {
   };
 }
 
+document.addEventListener('click', function (event) {
+  if (event.target.closest('.left') != null) {
+    var select = event.target.closest('.left').nextElementSibling;
+    select.selectedIndex = (select.selectedIndex - 1 + select.options.length) % select.options.length;
+  }
+  if (event.target.closest('.right') != null) {
+    var select = event.target.closest('.right').previousElementSibling;
+    select.selectedIndex = (select.selectedIndex + 1) % select.options.length;
+  }
+});
+
 Calendar.prototype.init = function (selectedDate) {
   this.selectedDate = selectedDate;
 
@@ -594,7 +605,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <section class="title-bar">
     <span class="title-bar__year">
       <button class="left" tabindex="-1">&lt;</button><select class="month"><option>May</option></select><button class="right" tabindex="-1">&gt;</button>
-      <button class="left" tabindex="-1">&lt;</button><select class="year"><option>2020</option><option>2021</option></select><button class="right" tabindex="-1">&gt;</button>
+      <button class="left" tabindex="-1">&lt;</button><select class="year"><option>2020</option><option>2021</option><option>2022</option></select><button class="right" tabindex="-1">&gt;</button>
     </span>
   </section>
 
