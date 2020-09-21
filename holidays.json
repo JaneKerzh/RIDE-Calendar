@@ -20,6 +20,14 @@
       ],
       "description": "It is a focal point in the movement for women's rights."
     },
+	{
+      "date": "2021-04-19T00:00:00.000Z",
+      "name": "Rocket Community Day",
+      "countries": [
+        "all Rocket locations"
+      ],
+      "description": ""
+    },
     {
       "date": "2021-06-19T00:00:00.000Z",
       "name": "Juneteenth",
@@ -53,7 +61,7 @@
         "Netherlands",
         "UK"
       ],
-      "description": ""
+      "description": "Black History Month is an annual observance originating in the United States, where it is also known as African-American History Month."
     },
     {
       "date": "march",
@@ -63,15 +71,15 @@
         "UK",
         "Australia"
       ],
-      "description": "TextTextText"
+      "description": "Commemorating and encouraging the study, observance and celebration of the vital role of women in American history."
     },
     {
       "date": "june",
-      "name": "LGBTQ Pride",
+      "name": "PRIDE",
       "countries": [
         "the whole world"
       ],
-      "description": "TextTextText"
+      "description": "Gay pride or LGBT pride is the promotion of the self-affirmation, dignity, equality, and increased visibility of lesbian, gay, bisexual, and transgender (LGBT) people as a social group. Pride, as opposed to shame and social stigma, is the predominant outlook that bolsters most LGBT rights movements. Pride has lent its name to LGBT-themed organizations, institutes, foundations, book titles, periodicals, a cable TV station, and the Pride Library."
     },
     {
       "date": "october",
@@ -79,7 +87,7 @@
       "countries": [
         "the whole world"
       ],
-      "description": "TextTextText"
+      "description": "Pays tribute to the diverse minds and beliefs held by all cultures around the world."
     }
   ]
 }
