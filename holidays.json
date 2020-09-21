@@ -10,15 +10,15 @@
         "Japan",
         "Israel"
       ],
-      "description": "TextTextText"
+      "description": "King was the chief spokesperson for nonviolent activism in the Civil Rights Movement, which successfully protested racial discrimination in federal and state law."
     },
     {
       "date": "2021-03-08T00:00:00.000Z",
       "name": "International Women's Day",
       "countries": [
-        "Global"
+        "the whole world"
       ],
-      "description": "TextTextText"
+      "description": "It is a focal point in the movement for women's rights."
     },
     {
       "date": "2021-06-19T00:00:00.000Z",
@@ -26,26 +26,26 @@
       "countries": [
         "USA"
       ],
-      "description": "TextTextText"
+      "description": "Juneteenth is celebrating the emancipation of those who had been enslaved in the United States."
     },
     {
       "date": "2021-09-18T00:00:00.000Z",
       "name": "International Equal Pay Day",
       "countries": [
-        "Global"
+        "the whole world"
       ],
       "description": "TextTextText"
     },
     {
       "date": "2021-12-03T00:00:00.000Z",
-      "name": "Day of Persons with Disability",
+      "name": "Day of Persons with Disabilities",
       "countries": [
-        "Global"
+        "the whole world"
       ],
-      "description": "TextTextText"
+      "description": "The annual observance of the International Day of Disabled Persons was proclaimed in 1992 by United Nations General Assembly resolution 47/3. It aims to promote the rights and well-being of persons with disabilities in all spheres of society and development, and to increase awareness of the situation of persons with disabilities in every aspect of political, social, economic and cultural life."
     },
     {
-      "date": "january",
+      "date": "february",
       "name": "Black History Month",
       "countries": [
         "USA",
@@ -53,7 +53,7 @@
         "Netherlands",
         "UK"
       ],
-      "description": "TextTextText"
+      "description": ""
     },
     {
       "date": "march",
@@ -69,7 +69,7 @@
       "date": "june",
       "name": "LGBTQ Pride",
       "countries": [
-        "Global"
+        "the whole world"
       ],
       "description": "TextTextText"
     },
@@ -77,7 +77,7 @@
       "date": "october",
       "name": "Global Diversity Awareness Month",
       "countries": [
-        "Global"
+        "the whole world"
       ],
       "description": "TextTextText"
     }
