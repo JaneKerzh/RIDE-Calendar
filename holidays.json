@@ -2,7 +2,7 @@
   "holidays": [
     {
       "date": "2021-01-18T00:00:00.000Z",
-      "holiday": "Martin Luther King Jr. Day",
+      "name": "Martin Luther King Jr. Day",
       "countries": [
         "USA",
         "Canada",
@@ -13,14 +13,73 @@
       "description": "TextTextText"
     },
     {
-      "date": "2021-01-18T00:00:00.000Z",
-      "holiday": "Martin Luther King Jr. Day",
+      "date": "2021-03-08T00:00:00.000Z",
+      "name": "International Women's Day",
+      "countries": [
+        "Global"
+      ],
+      "description": "TextTextText"
+    },
+    {
+      "date": "2021-06-19T00:00:00.000Z",
+      "name": "Juneteenth",
+      "countries": [
+        "USA"
+      ],
+      "description": "TextTextText"
+    },
+    {
+      "date": "2021-09-18T00:00:00.000Z",
+      "name": "International Equal Pay Day",
+      "countries": [
+        "Global"
+      ],
+      "description": "TextTextText"
+    },
+    {
+      "date": "2021-12-03T00:00:00.000Z",
+      "name": "Day of Persons with Disability",
+      "countries": [
+        "Global"
+      ],
+      "description": "TextTextText"
+    }
+  ],
+  "months": [
+    {
+      "date": "january",
+      "name": "Black History Month",
       "countries": [
         "USA",
         "Canada",
         "Netherlands",
-        "Japan",
-        "Israel"
+        "UK"
+      ],
+      "description": "TextTextText"
+    },
+    {
+      "date": "march",
+      "name": "Women's History Month",
+      "countries": [
+        "USA",
+        "UK",
+        "Australia"
+      ],
+      "description": "TextTextText"
+    },
+    {
+      "date": "june",
+      "name": "LGBTQ Pride",
+      "countries": [
+        "Global"
+      ],
+      "description": "TextTextText"
+    },
+    {
+      "date": "october",
+      "name": "Global Diversity Awareness Month",
+      "countries": [
+        "Global"
       ],
       "description": "TextTextText"
     }
