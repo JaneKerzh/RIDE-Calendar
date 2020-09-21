@@ -354,15 +354,165 @@ p, span, ul, li {
 }
 
 
+/* !!! */
+
+.calendar-contain select::-ms-expand {
+  display: none;
+}
+.calendar-contain select,
+.calendar-contain input {
+  width: 7em;
+  display: inline-block;
+  box-sizing: border-box;
+  /*padding: 0.5em 2em 0.5em 0.5em;*/
+  /*border: 1px solid #eee;*/
+  border: none;
+  font: inherit;
+  line-height: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right 15px top 1em, right 10px top 1em;
+  background-size: 5px 5px, 5px 5px;
+  background-color: transparent;
+}
+
+.calendar-contain input {
+  display: inline-block;
+  width: 3.5em;
+  background: none;
+}
+
+.calendar-contain .year {
+  width: 3.5em;
+}
+
 </style>
 <script>
 
-function Calendar() {
-  this.element = element;
+function DateUtils() {
+}
+DateUtils.month = function (date) {
+  var clone = new Date(date);
+  clone.setDate(1);
+  return clone;
+};
+DateUtils.weeks = function (month) {
+  var x = new Date(month);
+  x.setDate(1);
+  var y = new Date(month);
+  y.setMonth(y.getMonth() + 1, 0);
+  return Math.ceil((y.getDate() - x.getDate() + 1 + x.getDay()) / 7);
+};
+DateUtils.week = function (month, weekNumber) {
+  var x = new Date(month);
+  x.setDate(1);
+  x.setDate(1 + -x.getDay())
+  x.setDate(x.getDate() + weekNumber * 7);
+  return x;
+};
+DateUtils.date = function (week, day) {
+  var x = new Date(week);
+  x.setDate(x.getDate() + day - x.getDay());
+  return x;
+};
+
+function next(container, e, selector, create) {
+  var c = e == null ? container.firstElementChild : e.nextElementSibling;
+  if (c == null && !create) {
+    return null;
+  }
+  if (c == null) {
+    var c = document.createElement('section');
+    c.classList.toggle(selector.slice(1), true);
+    container.appendChild(c);
+    return c;
+  }
+  if (c.matches(selector)) {
+    return c;
+  }
+  return next(container, c, selector, create);
 }
 
-var c = new Calendar(document.querySelector("main.calendar-contain"));
-c.init();
+function Calendar(element) {
+  this.element = element;
+  this.month = DateUtils.month(new Date());
+}
+Calendar.prototype.init = function (selectedDate) {
+  this.month = DateUtils.month(selectedDate);
+
+  var calendar = this;
+  var select = this.element.querySelector('.month');
+  var format = new Intl.DateTimeFormat([], { month: 'long' });
+  if (select.childNodes.length < 4) {
+    select.innerHTML = '';
+    for (var i = 0; i < 12; i++) {
+      var option = document.createElement('option');
+      option.value = i;
+      option.textContent = format.format(new Date(new Date().getFullYear(), i));
+      select.appendChild(option);
+    }
+    select.oninput = select.onchange = function () {
+      calendar.init(new Date(calendar.month.getFullYear(), select.value));
+    };
+    select.value = selectedDate.getMonth();
+    
+    var yearSelect = this.element.querySelector('.year');
+    yearSelect.oninput = yearSelect.onchange = function () {
+      calendar.init(new Date(Number(yearSelect.value), calendar.month.getMonth()));
+    };
+  }
+
+  var e = this.element;
+  var currentMonth = this.month;
+  var updateDayNode = function (dayNode, date) {
+    var template = '';
+    template += '<span class="calendar__date">' + date.getDate() + '</span>';
+    //template += '<span class="calendar__task">3</span>';
+    dayNode.innerHTML = template;
+    dayNode.classList.toggle('inactive', date.getMonth() !== currentMonth.getMonth());
+    var today = new Date();
+    dayNode.classList.toggle('today', date.getMonth() === today.getMonth() && date.getDate() === today.getDate());
+  };
+  var updateWeekNode = function (weekNode, week) {
+    var days = 7;
+    var dayNode = null;
+    for (var day = 0; day < days; day++) {
+      dayNode = next(weekNode, dayNode, '.calendar__day', true);
+      updateDayNode(dayNode, DateUtils.date(week, day));
+    }
+    dayNode = next(weekNode, dayNode, '.calendar__day', true);
+    while (dayNode != null) {
+      var t = next(weekNode, dayNode, '.calendar__day', false);
+      dayNode.remove();
+      dayNode = t;
+    }
+  };
+  var updateDays = function (calendarNode, month) {
+    var weeks = DateUtils.weeks(month);
+    var weekNode = null;
+    for (var week = 0; week < weeks; week++) {
+      weekNode = next(calendarNode, weekNode, '.calendar__week', true);
+      updateWeekNode(weekNode, DateUtils.week(month, week));
+    }
+    weekNode = next(calendarNode, weekNode, '.calendar__week', true);
+    while (weekNode != null) {
+      var t = next(calendarNode, weekNode, '.calendar__week', false);
+      weekNode.remove();
+      weekNode = t;
+    }
+  };
+  updateDays(e.querySelector('.calendar__days'), this.month);
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var c = new Calendar(document.querySelector("main.calendar-contain"));
+  c.init(new Date());
+});
+
 
 </script>
 <body>
@@ -372,7 +522,7 @@ c.init();
 
   <section class="title-bar">
     <span class="title-bar__year">
-      Calendar > May 2017
+      Calendar > <select class="month"><option>May</option></select> <select class="year"><option>2020</option><option>2021</option></select>
     </span>
     <span class="title-bar__month">
       Month
