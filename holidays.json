@@ -75,7 +75,7 @@
     },
     {
       "date": "june",
-      "name": "PRIDE",
+      "name": "PRIDE month",
       "countries": [
         "the whole world"
       ],
@@ -84,6 +84,14 @@
     {
       "date": "october",
       "name": "Global Diversity Awareness Month",
+      "countries": [
+        "the whole world"
+      ],
+      "description": "Pays tribute to the diverse minds and beliefs held by all cultures around the world."
+    },
+	{
+      "date": "August",
+      "name": "Parlympics",
       "countries": [
         "the whole world"
       ],
