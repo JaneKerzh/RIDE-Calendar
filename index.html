@@ -81,6 +81,7 @@ p, span, ul, li {
   width: 43%;
   padding: 0 0.5rem;
   text-align: left;
+  white-space: nowrap;
 }
 @media screen and (min-width: 55em) {
   .title-bar__year {
@@ -339,6 +340,15 @@ p, span, ul, li {
   color: #eb474d;
 }
 
+.holiday {
+  outline-color: #eb474d !important;
+  color: #eb474d;
+}
+
+.holiday .calendar__date {
+  color: #eb474d;
+}
+
 .calendar__task {
   color: #040605;
   display: -webkit-box;
@@ -362,7 +372,9 @@ p, span, ul, li {
 }
 .calendar-contain select,
 .calendar-contain input {
-  width: 7em;
+  text-align: center;
+  text-align-last: center;
+    width: 7em;
   display: inline-block;
   box-sizing: border-box;
   /*padding: 0.5em 2em 0.5em 0.5em;*/
@@ -374,18 +386,19 @@ p, span, ul, li {
   -moz-appearance: none;
   -ms-appearance: none;
   appearance: none;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
-  background-position: right 15px top 1em, right 10px top 1em;
-  background-size: 5px 5px, 5px 5px;
+  background-image: none;
   background-color: transparent;
 }
 
 .calendar-contain .year {
-  display: inline-block;
   width: 4em;
-  background: none;
 }
+
+.left, .right {
+  background: none;
+  border: none;
+}
+
 
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
@@ -435,9 +448,10 @@ function next(container, e, selector, create) {
   return next(container, c, selector, create);
 }
 
-function Calendar(element) {
+function Calendar(element, holidays) {
   this.element = element;
   this.selectedDate = new Date();
+  this.holidays = holidays;
 
   var calendar = this;
   this.element.addEventListener('keydown', function (event) {
@@ -469,6 +483,13 @@ function Calendar(element) {
     }
   }, true);
 }
+
+if (Intl.ListFormat != null) {
+  Array.prototype.toLocaleString = function () {
+    return new Intl.ListFormat().format(this);
+  };
+}
+
 Calendar.prototype.init = function (selectedDate) {
   this.selectedDate = selectedDate;
 
@@ -495,6 +516,19 @@ Calendar.prototype.init = function (selectedDate) {
   select.value = selectedDate.getMonth();
   yearSelect.value = selectedDate.getFullYear();
 
+  // date info
+  this.element.querySelector('.sidebar__heading').innerHTML = new Intl.DateTimeFormat([], {weekday: 'long', month: 'long', day: 'numeric' }).format(selectedDate).replace(/,/g, '<br>');
+  this.element.querySelector('.sidebar__list').innerHTML = this.holidays.filter(function (x) {
+    return new Date(x.date).getUTCMonth() === selectedDate.getMonth() && new Date(x.date).getUTCDate() === selectedDate.getDate() || x.date === new Intl.DateTimeFormat('en', {month: 'long'}).format(selectedDate).toLowerCase();
+  }).map(function (x) {
+    var html = '<li class="sidebar__list-item">';
+    html += '<strong class="holiday">' + x.name + '</strong>';
+    html += '<p>' + 'Celebrated in: ' + x.countries.toLocaleString() + '</p>';
+    html += '<p>' + x.description + '</p>';
+    html += '</li>';
+    return html;
+  }).join('\n');
+
   var e = this.element;
   var currentMonth = DateUtils.month(this.selectedDate);
   var updateDayNode = function (dayNode, date) {
@@ -507,6 +541,8 @@ Calendar.prototype.init = function (selectedDate) {
     dayNode.classList.toggle('today', date.getMonth() === today.getMonth() && date.getDate() === today.getDate());
     dayNode.tabIndex = date.getDate() === selectedDate.getDate() && date.getMonth() === selectedDate.getMonth() ? 0 : -1;
     dayNode.setAttribute('data-date', date.toISOString());
+    
+    dayNode.classList.toggle('holiday', calendar.holidays.filter(function (x) {return new Date(x.date).getUTCMonth() === date.getMonth() && new Date(x.date).getUTCDate() === date.getDate()}).length !== 0);
   };
   var updateWeekNode = function (weekNode, week) {
     var days = 7;
@@ -540,8 +576,12 @@ Calendar.prototype.init = function (selectedDate) {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  var c = new Calendar(document.querySelector("main.calendar-contain"));
-  c.init(new Date());
+  fetch('./holidays.json').then(function (response) {
+    return response.json();
+  }).then(function (holidays) {
+    var c = new Calendar(document.querySelector("main.calendar-contain"), holidays.holidays);
+    c.init(new Date(new Date().getFullYear() + 1, 0));
+  });
 });
 
 
@@ -553,12 +593,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <section class="title-bar">
     <span class="title-bar__year">
-      <select class="month"><option>May</option></select> <select class="year"><option>2020</option><option>2021</option></select>
+      <button class="left" tabindex="-1">&lt;</button><select class="month"><option>May</option></select><button class="right" tabindex="-1">&gt;</button>
+      <button class="left" tabindex="-1">&lt;</button><select class="year"><option>2020</option><option>2021</option></select><button class="right" tabindex="-1">&gt;</button>
     </span>
   </section>
 
   <aside class="calendar__sidebar">
     <h2 class="sidebar__heading">Wednesday<br>April 6</h2>
+    <ul class="sidebar__list">
+      <li class="sidebar__list-item">Design Review</li>
+      <li class="sidebar__list-item">Get Groceries</li>
+    </ul>
   </aside>
 
   
