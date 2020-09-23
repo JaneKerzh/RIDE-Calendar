@@ -10,7 +10,7 @@
         "Japan",
         "Israel"
       ],
-      "description": "King was the chief spokesperson for nonviolent activism in the Civil Rights Movement, which successfully protested racial discrimination in federal and state law."
+      "description": "King was the chief spokesperson for nonviolent activism in the <b>Civil Rights Movement</b>, which successfully protested racial discrimination in federal and state law."
     },
     {
       "date": "2021-03-08T00:00:00.000Z",
@@ -34,7 +34,7 @@
       "countries": [
         "the USA"
       ],
-      "description": "Juneteenth is celebrating the emancipation of those who had been enslaved in the United States."
+      "description": "Juneteenth is celebrating the emancipation of <b>those who had been enslaved</b> in the United States."
     },
     {
       "date": "2021-09-18T00:00:00.000Z",
@@ -42,7 +42,7 @@
       "countries": [
         "the whole world"
       ],
-      "description": "TextTextText"
+      "description": "Represents the longstanding efforts towards the achievement of <b>equal pay for work of equal value</b>.  It further builds on the United Nations commitment to human rights and against all forms of discrimination."
     },
     {
       "date": "2021-12-03T00:00:00.000Z",
@@ -50,7 +50,7 @@
       "countries": [
         "the whole world"
       ],
-      "description": "The annual observance of the International Day of Disabled Persons was proclaimed in 1992 by United Nations General Assembly resolution 47/3. It aims to promote the rights and well-being of persons with disabilities in all spheres of society and development, and to increase awareness of the situation of persons with disabilities in every aspect of political, social, economic and cultural life."
+      "description": "The annual observance of the International Day of Disabled Persons was proclaimed in 1992 by United Nations General Assembly resolution 47/3. It aims to promote <b>the rights and well-being of persons with disabilities</b> in all spheres of society and development, and to increase awareness of the situation of persons with disabilities in every aspect of political, social, economic and cultural life."
     },
     {
       "date": "february",
@@ -90,12 +90,12 @@
       "description": "Pays tribute to the diverse minds and beliefs held by all cultures around the world."
     },
 	{
-      "date": "August",
+      "date": "august",
       "name": "Parlympics",
       "countries": [
-        "the whole world"
+        "Japan and the whole world"
       ],
-      "description": "Pays tribute to the diverse minds and beliefs held by all cultures around the world."
+      "description": ""
     }
   ]
 }
